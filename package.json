@@ -1,0 +1,23 @@
+{
+  "name": "hangman-game",
+  "version": "1.0.0",
+  "description": "Desafio Oracle/Alura jogo da forca",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "watch": "npx tailwindcss -i ./src/assets/css/input.css -o ./src/assets/css/main.css --watch",
+    "minify": "npx tailwindcss -o ./src/assets/css/main.min.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesley-reis/hangman-game.git"
+  },
+  "author": "wesley reis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wesley-reis/hangman-game/issues"
+  },
+  "homepage": "https://github.com/wesley-reis/hangman-game#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.18"
+  }
+}

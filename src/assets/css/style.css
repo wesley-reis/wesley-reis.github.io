@@ -1,0 +1,32 @@
+*{
+  font-family: 'Lato', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Rokkitt', serif;
+}
+  
+  #logo {
+    animation: fade-in 2s normal forwards ease-in-out;
+  }
+
+  #play {
+    animation: fade-in-play 2s normal forwards ease-in-out;
+  }
+
+  #addText {
+    animation: fade-in-addText 2s normal forwards ease-in-out;
+  }
+
+
+  @keyframes fade-in {
+    0% { margin-left: -300px; }
+  }
+
+  @keyframes fade-in-play {
+    0% { margin-left: -250%; }
+  }
+
+  @keyframes fade-in-addText {
+    0% { margin-left: +250%; }
+  }
+
+
