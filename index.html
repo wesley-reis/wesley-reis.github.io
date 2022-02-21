@@ -10,7 +10,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@300&family=Rokkitt:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./src/assets/css/style.css" />
   <link rel="stylesheet" href="./src/assets/css/main.min.css" />
   <link rel="shortcut icon" href="./src/assets/favicon.ico" type="image/x-icon">
   <title>Hangman Game</title>
@@ -72,15 +71,15 @@
         </div>
 
         <!-- Página Jogo -->
-        <div id="pagPlay" class="hidden flex-col gap-2 justify-between items-center w-full">
+        <div id="pagPlay" class="hidden flex-col gap-5 justify-between items-center w-full">
           <div class="flex flex-col items-start w-full mb-5 md:w-2/5">
-            <div id="silab-count" class="grid grid-cols-12 sm:flex sm:justify-center sm:items-center p-2 gap-3 w-full overflow-hidden"></div>
+            <div id="silab-count" class="flex justify-center items-center gap-1 p-2 sm:gap-3 break-words w-full overflow-hidden"></div>
             <div class="w-full -mb-8">
               <img id="forca" class="mx-auto" src="./src/assets/img/forca.png" width="60%" />
             </div>
           </div>
 
-          <div class="flex flex-col gap-2 w-full md:flex-row md:justify-center md:w-1/2">
+          <div class="flex gap-2 w-full sm:flex-row sm:justify-center sm:w-1/2">
             <button id="newPlay"
               class="bg-[#CDB077] border-2 border-[#CDB077] text-gray-100 text-lg font-semibold py-2 w-full md:w-2/5 rounded-xl hover:opacity-95">
               Novo jogo
@@ -95,13 +94,13 @@
     </div>
 
     <!-- Search -->
-    <div class="absolute mt-16 sm:mt-8 right-5">
+    <div class="absolute mt-8 right-5">
       <div>
         <!-- Search -->
         <div id="divSearch"
           class="hidden justify-start items-center bg-transparent border border-gray-400 rounded-md text-[#CDB077]">
           <input id="inputSearch" type="text" placeholder="Sua letra"
-            class="px-2 py-1 bg-transparent text-xl text-center outline-none max-w-[150px] uppercase" autofocus>
+            class="px-2 py-1 bg-transparent text-xl text-center outline-none max-w-[100px] sm:max-w-[150px] uppercase" autofocus>
           <svg id="search" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
             fill="currentColor">
             <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" /> 
@@ -110,14 +109,19 @@
               clip-rule="evenodd" />
           </svg>
         </div>
-
-        <!-- Message -->
-        <div id="message" class="hidden bg-gray-50 bg-opacity-10 py-1 px-4 rounded-sm"></div>
-
-        <!-- letter error -->
-        <div id="letter-error" class="hidden flex justify-center items-center gap-3 bg-white py-1 px-2 mx-auto rounded-md mt-3"></div>
       </div>
     </div>
+
+    <div class="absolute mt-[7rem] right-5">
+      <!-- letter error -->
+      <div id="letter-error" class="hidden flex justify-center items-center gap-3 bg-white py-1 px-2 mx-auto rounded-md mt-3"></div>
+    </div>
+
+    <div class="absolute mt-[5rem] right-5">
+      <!-- Message -->
+      <div id="message" class="hidden bg-gray-50 bg-opacity-10 py-1 px-4 rounded-sm"></div>
+    </div>
+
 
     <div class="absolute mt-20 flex flex-col left-10 sm:mt-8 sm:left-[50%] text-[#CDB077]">
         <p id="life" class="hidden">Vidas: 07</p>

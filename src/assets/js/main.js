@@ -87,7 +87,6 @@ btnCancelPlay.addEventListener('click', () => {
     stopGame()
     openClose(pagHome, pagPlay)
     letterError.classList.add('hidden')
-    vidas = 7
     openClose('',divSearch)
 })
 
@@ -268,6 +267,7 @@ function openClose(pagOpen=null, pagClose=null){
 }
 
 function startGame(){
+    vidas = 7
     pagPlay.classList.add('start')
     sortText()
     numRandom()
@@ -277,6 +277,7 @@ function startGame(){
 }
 
 function stopGame(){
+    vidas = 7
     pagPlay.classList.remove('start')
     life.classList.add("hidden")
 }
@@ -301,7 +302,7 @@ function sortText(){
     secret = text.toUpperCase()
     for(let index=0; index < text.length; index++) {
         var p = document.createElement("p")
-        p.className="border-b-4 border-[#86734d] px-3 text-gray-50 text-xl font-medium" 
+        p.className="border-b-4 border-[#86734d] px-3 text-gray-50 text-sm sm:text-xl font-medium" 
         countSilab.appendChild(p)
     }
 
