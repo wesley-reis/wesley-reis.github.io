@@ -10,7 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Open+Sans:wght@300&family=Rokkitt:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-  <!-- <link rel="stylesheet" href="./src/assets/css/style.css" /> -->
+  <link rel="stylesheet" href="./src/assets/css/style.css" />
   <link rel="stylesheet" href="./src/assets/css/main.min.css" />
   <link rel="shortcut icon" href="./src/assets/favicon.ico" type="image/x-icon">
   <title>Hangman Game</title>
@@ -57,7 +57,7 @@
           <div class="flex flex-col items-start w-full mb-16 md:w-2/5 text-[#CDB077]">
             <label class="text-3xl uppercase font-light mb-1" for="input">Digite uma palavra</label>
             <input class="w-full p-3 outline-none bg-transparent border rounded-xl" name="input"
-              id="input" type="text" />
+              id="input" type="text" autofocus/>
           </div>
           <div class="flex flex-col gap-2 w-full md:flex-row md:justify-center md:w-1/2">
             <button id="addPlay"
@@ -74,19 +74,9 @@
         <!-- Página Jogo -->
         <div id="pagPlay" class="hidden flex-col gap-2 justify-between items-center w-full">
           <div class="flex flex-col items-start w-full mb-5 md:w-2/5">
-            <div class="flex justify-center items-center gap-3 w-full">
-              <span class="border-b-4 border-[#86734d] px-3 text-gray-50 text-xl font-medium">C</span>
-              <span class="border-b-4 border-[#86734d] px-3 text-gray-50 text-xl font-medium">A</span>
-              <span class="border-b-4 border-[#86734d] px-3 text-gray-50 text-xl font-medium">S</span>
-              <span class="border-b-4 border-[#86734d] px-3 text-gray-50 text-xl font-medium">A</span>
-            </div>
-            <div id="forca" class="w-full -mb-8">
-              <img class="mx-auto" src="./src/assets/img/person-1/forca-1-1.png" width="60%" />
-            </div>
-            <div class="flex justify-center items-center gap-3 bg-white py-1 px-2 mx-auto rounded-md">
-              <p class="text-red-500 text-base font-bold">T</p>
-              <p class="text-red-500 text-base font-bold">K</p>
-              <p class="text-red-500 text-base font-bold">I</p>
+            <div id="silab-count" class="grid grid-cols-12 sm:flex sm:justify-center sm:items-center p-2 gap-3 w-full overflow-hidden"></div>
+            <div class="w-full -mb-8">
+              <img id="forca" class="mx-auto" src="./src/assets/img/forca.png" width="60%" />
             </div>
           </div>
 
@@ -105,16 +95,16 @@
     </div>
 
     <!-- Search -->
-    <div class="absolute mt-8 right-5">
+    <div class="absolute mt-16 sm:mt-8 right-5">
       <div>
         <!-- Search -->
         <div id="divSearch"
           class="hidden justify-start items-center bg-transparent border border-gray-400 rounded-md text-[#CDB077]">
           <input id="inputSearch" type="text" placeholder="Sua letra"
-            class="px-2 py-1 bg-transparent text-xl text-center outline-none max-w-[150px] uppercase">
+            class="px-2 py-1 bg-transparent text-xl text-center outline-none max-w-[150px] uppercase" autofocus>
           <svg id="search" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
             fill="currentColor">
-            <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
+            <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" /> 
             <path fill-rule="evenodd"
               d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z"
               clip-rule="evenodd" />
@@ -122,20 +112,23 @@
         </div>
 
         <!-- Message -->
-        <div id="message" class="bg-gray-50 py-2 px-4 rounded-sm">
-          <p class="text-4xl font-bold text-[#AE5336]">YOU LOSE</p>
-          <p class="text-4xl font-bold text-[#608C62]">YOU WIN</p>
-          <p class="text-lg font-bold text-[#608C62]">Palavra já cadastrada</p>
-        </div>
+        <div id="message" class="hidden bg-gray-50 bg-opacity-10 py-1 px-4 rounded-sm"></div>
 
+        <!-- letter error -->
+        <div id="letter-error" class="hidden flex justify-center items-center gap-3 bg-white py-1 px-2 mx-auto rounded-md mt-3"></div>
       </div>
-
     </div>
+
+    <div class="absolute mt-20 flex flex-col left-10 sm:mt-8 sm:left-[50%] text-[#CDB077]">
+        <p id="life" class="hidden">Vidas: 07</p>
+    </div>
+
+    <div id="count-acert" class="hidden"></div>
 
 
 
     <!-- Footer -->
-    <footer class="mx-auto pb-2 text-[#CDB077]">
+    <footer class="mx-auto pb-2 mt-10 text-[#CDB077]">
       <div class="flex justify-center items-center gap-2 mb-2">
         <a href="https://github.com/wesley-reis" target="__blank">
           <svg class="fill-current" enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.0"
@@ -162,9 +155,21 @@
       <a href="https://wrrdev.com" class="text-sm">Desenvolvido por <b>WRRD</b>eveloper</a>
     </footer>
   </div>
+
+  <audio id="audioError" controls autoplay hidden>
+    <source src="./src/assets/audios/dor.mp3" type="audio/mp3">
+  </audio>
+  <audio id="audioWin" controls autoplay hidden>
+    <source src="./src/assets/audios/victory.mp3" type="audio/mp3">
+  </audio>
+  <audio id="audioFinish" controls autoplay hidden>
+    <source src="./src/assets/audios/fatalaty.mp3" type="audio/mp3">
+  </audio>
+
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="./src/assets/js/main.js"></script>
+    <script src="./src/assets/js/words.js"></script>
+    <script src="./src/assets/js/main.js"></script>
 </body>
 
 </html>
